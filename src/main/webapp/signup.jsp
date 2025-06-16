@@ -16,7 +16,7 @@
     <div class="card mx-auto" style="max-width: 450px;">
         <div class="card-body">
             <h3 class="text-center mb-4">Create Account</h3>
-            <form method="post" action="../SignupServlet">
+            <form method="get" action="/signup">
                 <div class="mb-3">
                     <label class="form-label">Full Name</label>
                     <input type="text" class="form-control" name="fullName" required />

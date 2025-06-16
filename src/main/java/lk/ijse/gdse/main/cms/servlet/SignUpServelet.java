@@ -5,6 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lk.ijse.gdse.main.cms.dto.UserDTO;
+import lk.ijse.gdse.main.cms.model.UserModel;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.io.IOException;
 
@@ -17,7 +20,11 @@ public class SignUpServelet extends HttpServlet {
         String password = req.getParameter("password");
         String role = req.getParameter("role");
 
-        System.out.println(fullname+" "+username +" "+ password +" "+ role);
+        BasicDataSource dataSource = (BasicDataSource) req.getServletContext().getAttribute("dataSource");
+        boolean isSave = UserModel.saveUser(new UserDTO(fullname, username, password, role), dataSource);
+        if (isSave) {
+            System.out.println("Save User...");
+        }
     }
 
 }

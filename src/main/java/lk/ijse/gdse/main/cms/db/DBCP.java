@@ -2,16 +2,18 @@ package lk.ijse.gdse.main.cms.db;
 
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
+import jakarta.servlet.annotation.WebListener;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.SQLException;
 
+@WebListener
 public class DBCP implements ServletContextListener {
-
+    @Override
     public void contextInitialized(ServletContextEvent sce) {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/cms");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/complaint_management_system");
         dataSource.setUsername("root");
         dataSource.setPassword("Ijse@1234");
         dataSource.setInitialSize(50);
@@ -20,6 +22,7 @@ public class DBCP implements ServletContextListener {
         sce.getServletContext().setAttribute("dataSource", dataSource);
 
     }
+    @Override
     public void contextDestroyed(ServletContextEvent sce) {
         BasicDataSource dataSource = (BasicDataSource) sce.getServletContext().getAttribute("dataSource");
         try {

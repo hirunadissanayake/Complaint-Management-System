@@ -28,8 +28,8 @@
                 <div class="mb-3">
                     <label class="form-label">Role</label>
                     <select class="form-select" name="role" required>
-                        <option value="employee">Employee</option>
-                        <option value="admin">Admin</option>
+                        <option value="EMPLOYEE">Employee</option>
+                        <option value="ADMIN">Admin</option>
                     </select>
                 </div>
                 <div class="d-grid">

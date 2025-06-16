@@ -35,7 +35,7 @@ public class UserModel {
             preparedStatement.setString(1, userDTO.getFullName());
             preparedStatement.setString(2, userDTO.getUsername());
             preparedStatement.setString(3, userDTO.getPassword());
-            preparedStatement.setString(4, userDTO.getPassword());
+            preparedStatement.setString(4, userDTO.getRole());
             int i = preparedStatement.executeUpdate();
 
             if (i > 0) {
@@ -43,6 +43,7 @@ public class UserModel {
             }
 
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
 

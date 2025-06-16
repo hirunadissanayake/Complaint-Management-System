@@ -24,6 +24,7 @@ public class SignUpServelet extends HttpServlet {
         boolean isSave = UserModel.saveUser(new UserDTO(fullname, username, password, role), dataSource);
         if (isSave) {
             System.out.println("Save User...");
+            resp.sendRedirect(req.getContextPath()+"/index.jsp");
         }
     }
 

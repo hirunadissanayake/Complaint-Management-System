@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/Login")
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         String role = req.getParameter("role");
 
-        System.out.println("name: " + username + " password: " + password + " role: " + role);
+        System.out.println(username +" "+ password);
 
     }
 }

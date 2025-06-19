@@ -1,0 +1,52 @@
+
+
+CREATE DATABASE IF NOT EXISTS complaint_management_system;
+
+USE complaint_management_system;
+
+
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    role ENUM('EMPLOYEE', 'ADMIN') NOT NULL DEFAULT 'EMPLOYEE',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE complaints (
+    complaint_id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(200) NOT NULL,
+    description TEXT NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    priority ENUM('LOW', 'MEDIUM', 'HIGH', 'URGENT') NOT NULL DEFAULT 'MEDIUM',
+    status ENUM('PENDING', 'IN_PROGRESS', 'RESOLVED', 'REJECTED') NOT NULL DEFAULT 'PENDING',
+    submitted_by INT NOT NULL,
+    assigned_to INT NULL,
+    admin_remarks TEXT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (submitted_by) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (assigned_to) REFERENCES users(user_id) ON DELETE SET NULL
+);
+
+
+INSERT INTO users (username, password, full_name, email, role) VALUES 
+('admin', 'admin123', 'System Administrator', 'admin@municipality.gov', 'ADMIN');
+
+
+INSERT INTO users (username, password, full_name, email, role) VALUES 
+('employee1', 'emp123', 'John Doe', 'john.doe@municipality.gov', 'EMPLOYEE'),
+('employee2', 'emp123', 'Jane Smith', 'jane.smith@municipality.gov', 'EMPLOYEE');
+
+
+INSERT INTO complaints (title, description, category, status, priority, submitted_by, assigned_to, admin_remarks)
+VALUES
+    ('Water Leakage', 'There is a continuous water leakage near the park entrance.', 'Water', 'IN_PROGRESS', 'HIGH', 3, 1, 'Plumbing team has been notified.'),
+    ('Garbage Not Collected', 'Garbage has not been collected in my area for the past 4 days.', 'Sanitation', 'PENDING', 'MEDIUM', 2, NULL, NULL),
+    ('Street Flooding', 'Even small rain is causing flooding in my street.', 'Drainage', 'RESOLVED', 'HIGH', 3, 1, 'Issue resolved by cleaning blocked drains.'),
+    ('Stray Dogs', 'Large number of stray dogs seen in the neighborhood recently.', 'Animal Control', 'REJECTED', 'LOW', 2, 1, 'Outside jurisdiction. Contact animal welfare.'),
+    ('Illegal Parking', 'Cars are being parked illegally in front of my house.', 'Traffic', 'IN_PROGRESS', 'MEDIUM', 3, NULL, NULL);

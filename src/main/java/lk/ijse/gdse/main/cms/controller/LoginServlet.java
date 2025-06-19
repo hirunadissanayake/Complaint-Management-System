@@ -1,4 +1,4 @@
-package lk.ijse.gdse.main.cms.servlet;
+package lk.ijse.gdse.main.cms.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

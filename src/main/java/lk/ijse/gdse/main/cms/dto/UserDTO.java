@@ -6,24 +6,26 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@Data
+@ToString
 public class UserDTO {
     private int id;
-    private String fullName;
     private String username;
     private String password;
+    private String fullName;
+    private String email;
     private String role;
-
+    
     public UserDTO(String username, String password, String role) {
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
-    public UserDTO(String fullname, String username, String password, String role) {
-        this.fullName = fullname;
+    public UserDTO(String username, String password, String fullName, String email, String role) {
         this.username = username;
         this.password = password;
+        this.fullName = fullName;
+        this.email = email;
         this.role = role;
     }
 

@@ -31,11 +31,14 @@ public class UserModel {
     public static boolean saveUser(UserDTO userDTO, BasicDataSource dataSource) {
         try {
             Connection connection = dataSource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into users(fullname,username,password,role) values(?,?,?,?)");
-            preparedStatement.setString(1, userDTO.getFullName());
-            preparedStatement.setString(2, userDTO.getUsername());
-            preparedStatement.setString(3, userDTO.getPassword());
-            preparedStatement.setString(4, userDTO.getRole());
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "INSERT INTO users (username, password, full_name, email, role) VALUES (?, ?, ?, ?, ?)"
+            );
+            preparedStatement.setString(1, userDTO.getUsername());
+            preparedStatement.setString(2, userDTO.getPassword());
+            preparedStatement.setString(3, userDTO.getFullName());
+            preparedStatement.setString(4, userDTO.getEmail());
+            preparedStatement.setString(5, userDTO.getRole());
             int i = preparedStatement.executeUpdate();
 
             if (i > 0) {

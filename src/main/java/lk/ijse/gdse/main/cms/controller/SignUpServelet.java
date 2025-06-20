@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lk.ijse.gdse.main.cms.dto.UserDTO;
+import lk.ijse.gdse.main.cms.dto.User;
 import lk.ijse.gdse.main.cms.model.UserModel;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -22,7 +22,7 @@ public class SignUpServelet extends HttpServlet {
         String role = req.getParameter("role");
 
         BasicDataSource dataSource = (BasicDataSource) req.getServletContext().getAttribute("dataSource");
-        boolean isSave = UserModel.saveUser(new UserDTO( username,password,fullname,email,role), dataSource);
+        boolean isSave = UserModel.saveUser(new User( username,password,fullname,email,role), dataSource);
         if (isSave) {
             System.out.println("Save User...");
             resp.sendRedirect(req.getContextPath() + "/index.jsp");

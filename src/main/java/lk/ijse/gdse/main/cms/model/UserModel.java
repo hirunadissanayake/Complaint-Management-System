@@ -1,6 +1,6 @@
 package lk.ijse.gdse.main.cms.model;
 
-import lk.ijse.gdse.main.cms.dto.UserDTO;
+import lk.ijse.gdse.main.cms.dto.User;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.Connection;
@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserModel {
-    public static boolean findUser(UserDTO userDTO,  BasicDataSource dataSource) {
+    public static boolean findUser(User userDTO, BasicDataSource dataSource) {
         try {
             Connection connection = dataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE username=? AND password=? AND role=?");
@@ -28,7 +28,7 @@ public class UserModel {
         return false;
     }
 
-    public static boolean saveUser(UserDTO userDTO, BasicDataSource dataSource) {
+    public static boolean saveUser(User userDTO, BasicDataSource dataSource) {
         try {
             Connection connection = dataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(

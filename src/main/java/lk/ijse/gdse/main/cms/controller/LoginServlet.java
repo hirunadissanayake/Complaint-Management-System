@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import lk.ijse.gdse.main.cms.dto.UserDTO;
+import lk.ijse.gdse.main.cms.dto.User;
 import lk.ijse.gdse.main.cms.model.UserModel;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 
         BasicDataSource dataSource = (BasicDataSource) req.getServletContext().getAttribute("dataSource");
 
-        boolean isValidUser = UserModel.findUser(new UserDTO(username, password,role),dataSource);
+        boolean isValidUser = UserModel.findUser(new User(username, password,role),dataSource);
         System.out.println(isValidUser);
 
         if (isValidUser) {

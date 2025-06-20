@@ -2,12 +2,14 @@ package lk.ijse.gdse.main.cms.dto;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
-public class UserDTO {
+public class User implements Serializable {
     private int id;
     private String username;
     private String password;
@@ -15,13 +17,13 @@ public class UserDTO {
     private String email;
     private String role;
     
-    public UserDTO(String username, String password, String role) {
+    public User(String username, String password, String role) {
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
-    public UserDTO(String username, String password, String fullName, String email, String role) {
+    public User(String username, String password, String fullName, String email, String role) {
         this.username = username;
         this.password = password;
         this.fullName = fullName;
